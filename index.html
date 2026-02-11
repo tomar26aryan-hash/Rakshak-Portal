@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakshak Portal - Complete Digital Police Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .logo-icon {
+            font-size: 1.8em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.95em;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .main-content {
+            min-height: calc(100vh - 80px);
+            padding: 30px 0 80px 0;
+        }
+
+        .page {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            padding: 35px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 30px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border-radius: 16px;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+
+        .service-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .service-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .service-card p, .service-card ul {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .service-card ul {
+            margin-top: 15px;
+            line-height: 2;
+            list-style: none;
+        }
+
+        .form-container {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95em;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e8ff;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 25px;
+            min-height: 550px;
+        }
+
+        .sidebar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            border-radius: 12px;
+            padding: 25px 0;
+            color: white;
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu li a {
+            display: block;
+            padding: 14px 25px;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .sidebar-menu li a:hover,
+        .sidebar-menu li a.active {
+            background: rgba(255,255,255,0.12);
+            color: white;
+            border-left-color: #667eea;
+        }
+
+        .dashboard-content {
+            padding: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 22px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
+        }
+
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.88em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #e8ecf3;
+            font-size: 0.9em;
+        }
+
+        th {
+            font-weight: 600;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr:hover {
+            background: rgba(102, 126, 234, 0.04);
+        }
+
+        .status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-closed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-under-investigation {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.65);
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            max-width: 450px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            font-size: 1.4em;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 18px;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
+
+        .emergency-button {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emergency-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 28px rgba(231, 76, 60, 0.6);
+        }
+
+        .alert {
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: none;
+            font-size: 0.92em;
+            font-weight: 500;
+        }
+
+        .alert.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .action-btn {
+            padding: 6px 14px;
+            font-size: 0.82em;
+            margin: 0 3px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .action-btn-view {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .action-btn-update {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .action-btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 968px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-menu {
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .nav-menu li a {
+                font-size: 0.85em;
+                padding: 6px 12px;
+            }
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .dashboard-section {
+            display: none;
+        }
+
+        .dashboard-section.active {
+            display: block;
+        }
+
+        .user-info {
+            display: none;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .user-info.show {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🛡️</span>
+                    <span>Rakshak Portal</span>
+                </div>
+                
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('services')">Services</a></li>
+                        <li><a href="#" onclick="showPage('fir')">File FIR</a></li>
+                        <li><a href="#" onclick="showPage('complaint')">Complaints</a></li>
+                        <li><a href="#" onclick="showPage('certificates')">Certificates</a></li>
+                        <li><a href="#" onclick="showPage('lostfound')">Lost & Found</a></li>
+                        <li><a href="#" onclick="showPage('tips')">Anonymous Tips</a></li>
+                        <li><a href="#" onclick="showPage('challan')">Pay Challan</a></li>
+                        <li><a href="#" onclick="showPage('track')">Track Status</a></li>
+                    </ul>
+                </nav>
+
+                <div class="auth-buttons">
+                    <span id="userInfo" class="user-info"></span>
+                    <a href="#" class="btn btn-secondary" id="citizenLogin" onclick="showLoginModal('citizen')">Citizen Login</a>
+                    <a href="#" class="btn btn-primary" id="adminLogin" onclick="showLoginModal('admin')">Admin Login</a>
+                    <a href="#" class="btn btn-secondary" id="logoutBtn" onclick="logout()" style="display:none;">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Home Page -->
+            <div id="home" class="page active">
+                <div class="hero">
+                    <h1>🛡️ Rakshak Portal</h1>
+                    <p class="hero-subtitle">Complete Digital Police & Citizen Service Platform</p>
+                    <p style="font-size: 1.05em; color: #666; margin-bottom: 28px;">Ensuring Safety, Justice & Transparency for All Citizens</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary" onclick="showPage('fir')">📋 File FIR Online</a>
+                        <a href="#" class="btn btn-secondary" onclick="showPage('services')">🔍 Explore Services</a>
+                    </div>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card" onclick="showPage('fir')">
+                        <div class="service-icon">📋</div>
+                        <h3 class="service-title">Online FIR</h3>
+                        <p>File and track your FIR online with real-time status updates</p>
+                    </div>
+                    <div class="service-card" onclick="showPage('complaint')">
+                        <div class="service-icon">💬</div>
+                        <h3 class="service-title">Complaints</h3>
+                        <p>Submit complaints with transparent tracking</p>
+                    </div>
+                    <div class="service-card" onclick="showPage('certificates')">
+                        <div class="service-icon">📄</div>
+                        <h3 class="service-title">Certificates</h3>
+                        <p>Apply for police verification and character certificates</p>
+                    </div>
+                    <div class="service-card" onclick="showPage('lostfound')">
+                        <div class="service-icon">🔍</div>
+                        <h3 class="service-title">Lost & Found</h3>
+                        <p>Report lost items or search for found property</p>
+                    </div>
+                    <div class="service-card" onclick="showPage('tips')">
+                        <div class="service-icon">💡</div>
+                        <h3 class="service-title">Anonymous Tips</h3>
+                        <p>Share anonymous tips to maintain community safety</p>
+                    </div>
+                    <div class="service-card" onclick="showPage('challan')">
+                        <div class="service-icon">💳</div>
+                        <h3 class="service-title">Pay Challan</h3>
+                        <p>Pay traffic challans online quickly and securely</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Page -->
+            <div id="services" class="page">
+                <h2 class="page-title">Our Services</h2>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4 style="font-size: 1.2em; color: #2c3e50; margin-bottom: 10px;">👥 Citizen Services</h4>
+                        <ul>
+                            <li>✓ FIR Filing & Tracking</li>
+                            <li>✓ Complaint Management</li>
+                            <li>✓ Certificate Requests</li>
+                            <li>✓ Traffic Challan Payment</li>
+                            <li>✓ Lost Property Reports</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4 style="font-size: 1.2em; color: #2c3e50; margin-bottom: 10px;">🚨 Emergency Services</h4>
+                        <ul>
+                            <li>✓ SOS Emergency Alerts</li>
+                            <li>✓ Cybercrime Reporting</li>
+                            <li>✓ Harassment Complaints</li>
+                            <li>✓ Violence Reporting</li>
+                            <li>✓ 24/7 Helpline</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4 style="font-size: 1.2em; color: #2c3e50; margin-bottom: 10px;">📋 Administrative</h4>
+                        <ul>
+                            <li>✓ Police Verification</li>
+                            <li>✓ Character Certificates</li>
+                            <li>✓ NOC Applications</li>
+                            <li>✓ Tenant Verification</li>
+                            <li>✓ Event Permissions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIR Page -->
+            <div id="fir" class="page">
+                <h2 class="page-title">📋 File FIR Online</h2>
+                
+                <div class="form-container">
+                    <form id="firForm" onsubmit="submitFIR(event)">
+                        <div class="form-group">
+                            <label>Complainant Name *</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Mobile Number *</label>
+                            <input type="tel" class="form-control" name="mobile" pattern="[0-9]{10}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Address *</label>
+                            <textarea class="form-control" name="address" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Type of Crime *</label>
+                            <select class="form-control" name="crimeType" required>
+                                <option value="">Select Crime Type</option>
+                                <option value="theft">Theft</option>
+                                <option value="fraud">Fraud</option>
+                                <option value="cybercrime">Cybercrime</option>
+                                <option value="assault">Assault</option>
+                                <option value="harassment">Harassment</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Incident Details *</label>
+                            <textarea class="form-control" name="details" placeholder="Please provide detailed information about the incident..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Date of Incident *</label>
+                            <input type="date" class="form-control" name="incidentDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Location of Incident *</label>
+                            <input type="text" class="form-control" name="location" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">
+                            Submit FIR
+                        </button>
+                    </form>
+                    
+                    <div id="firAlert" class="alert"></div>
+                    <div id="firLoading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Submitting your FIR...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complaint Page -->
+            <div id="complaint" class="page">
+                <h2 class="page-title">💬 Lodge Complaint</h2>
+                
+                <div class="form-container">
+                    <form id="complaintForm" onsubmit="submitComplaint(event)">
+                        <div class="form-group">
+                            <label>Your Name *</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Contact Number *</label>
+                            <input type="tel" class="form-control" name="contact" pattern="[0-9]{10}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Purpose *</label>
+                            <textarea class="form-control" name="purpose" placeholder="Why do you need this certificate?" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Supporting Documents Info</label>
+                            <textarea class="form-control" name="documents" placeholder="List of documents you will provide (Aadhar, Address Proof, etc.)"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">
+                            Apply for Certificate
+                        </button>
+                    </form>
+                    
+                    <div id="certificateAlert" class="alert"></div>
+                </div>
+            </div>
+
+            <!-- Lost & Found Page -->
+            <div id="lostfound" class="page">
+                <h2 class="page-title">🔍 Lost & Found</h2>
+                
+                <div class="form-container">
+                    <form id="lostFoundForm" onsubmit="submitLostFound(event)">
+                        <div class="form-group">
+                            <label>Report Type *</label>
+                            <select class="form-control" name="reportType" required>
+                                <option value="">Select Type</option>
+                                <option value="lost">Lost Item</option>
+                                <option value="found">Found Item</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Item Description *</label>
+                            <textarea class="form-control" name="itemDescription" placeholder="Describe the item in detail..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Location *</label>
+                            <input type="text" class="form-control" name="location" placeholder="Where was it lost/found?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Date *</label>
+                            <input type="date" class="form-control" name="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Your Name *</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Contact Number *</label>
+                            <input type="tel" class="form-control" name="contact" pattern="[0-9]{10}" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">
+                            Submit Report
+                        </button>
+                    </form>
+                    
+                    <div id="lostFoundAlert" class="alert"></div>
+                </div>
+            </div>
+
+            <!-- Anonymous Tips Page -->
+            <div id="tips" class="page">
+                <h2 class="page-title">💡 Submit Anonymous Tip</h2>
+                
+                <div class="form-container">
+                    <div class="alert alert-info show" style="margin-bottom: 25px;">
+                        <strong>🔒 Privacy Notice:</strong> Your identity will remain completely anonymous. We do not collect any personal information.
+                    </div>
+                    
+                    <form id="tipsForm" onsubmit="submitTip(event)">
+                        <div class="form-group">
+                            <label>Tip Category *</label>
+                            <select class="form-control" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="crime">Crime Information</option>
+                                <option value="drugs">Drug Activity</option>
+                                <option value="trafficking">Human Trafficking</option>
+                                <option value="corruption">Corruption</option>
+                                <option value="terrorism">Suspicious Activity</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Tip Details *</label>
+                            <textarea class="form-control" name="details" placeholder="Provide as much detail as possible..." required style="min-height: 150px;"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Location (Optional)</label>
+                            <input type="text" class="form-control" name="location" placeholder="Where is this happening?">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">
+                            Submit Anonymous Tip
+                        </button>
+                    </form>
+                    
+                    <div id="tipsAlert" class="alert"></div>
+                </div>
+            </div>
+
+            <!-- Pay Challan Page -->
+            <div id="challan" class="page">
+                <h2 class="page-title">💳 Pay Traffic Challan</h2>
+                
+                <div class="form-container">
+                    <form id="challanSearchForm" onsubmit="searchChallan(event)">
+                        <div class="form-group">
+                            <label>Search By *</label>
+                            <select class="form-control" name="searchType" required>
+                                <option value="">Select Search Type</option>
+                                <option value="challan">Challan Number</option>
+                                <option value="vehicle">Vehicle Number</option>
+                                <option value="license">License Number</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Enter Details *</label>
+                            <input type="text" class="form-control" name="searchValue" placeholder="Enter number" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">
+                            Search Challan
+                        </button>
+                    </form>
+                    
+                    <div id="challanResult" style="display: none; margin-top: 30px; padding: 25px; background: #f8f9ff; border-radius: 12px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 20px;">Challan Details</h3>
+                        <div style="margin-bottom: 15px;"><strong>Challan No:</strong> <span id="challanNo"></span></div>
+                        <div style="margin-bottom: 15px;"><strong>Vehicle No:</strong> <span id="vehicleNo"></span></div>
+                        <div style="margin-bottom: 15px;"><strong>Violation:</strong> <span id="violation"></span></div>
+                        <div style="margin-bottom: 15px;"><strong>Amount:</strong> <span id="amount" style="font-size: 1.5em; color: #e74c3c; font-weight: 700;"></span></div>
+                        <div style="margin-bottom: 20px;"><strong>Date:</strong> <span id="challanDate"></span></div>
+                        <button class="btn btn-primary" onclick="payChallan()" style="width: 100%; padding: 14px;">
+                            Pay Now
+                        </button>
+                    </div>
+                    
+                    <div id="challanAlert" class="alert"></div>
+                </div>
+            </div>
+
+            <!-- Track Status Page -->
+            <div id="track" class="page">
+                <h2 class="page-title">📍 Track Status</h2>
+                
+                <div class="form-container">
+                    <form id="trackForm" onsubmit="trackStatus(event)">
+                        <div class="form-group">
+                            <label>Track Type *</label>
+                            <select class="form-control" name="trackType" required>
+                                <option value="">Select Type</option>
+                                <option value="fir">FIR</option>
+                                <option value="complaint">Complaint</option>
+                                <option value="certificate">Certificate Application</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Reference Number *</label>
+                            <input type="text" class="form-control" name="referenceNumber" placeholder="Enter your reference number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Mobile Number *</label>
+                            <input type="tel" class="form-control" name="mobile" pattern="[0-9]{10}" placeholder="Registered mobile number" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">
+                            Track Status
+                        </button>
+                    </form>
+                    
+                    <div id="trackResult" style="display: none; margin-top: 30px; padding: 25px; background: #f8f9ff; border-radius: 12px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 20px;">Status Details</h3>
+                        <div style="margin-bottom: 15px;"><strong>Reference No:</strong> <span id="trackRefNo"></span></div>
+                        <div style="margin-bottom: 15px;"><strong>Type:</strong> <span id="trackType"></span></div>
+                        <div style="margin-bottom: 15px;"><strong>Status:</strong> <span id="trackStatus"></span></div>
+                        <div style="margin-bottom: 15px;"><strong>Filed Date:</strong> <span id="trackDate"></span></div>
+                        <div style="margin-bottom: 15px;"><strong>Last Updated:</strong> <span id="trackUpdated"></span></div>
+                        <div><strong>Remarks:</strong> <span id="trackRemarks"></span></div>
+                    </div>
+                    
+                    <div id="trackAlert" class="alert"></div>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div id="admin-dashboard" class="page">
+                <h2 class="page-title">👨‍💼 Admin Dashboard</h2>
+                
+                <div class="dashboard">
+                    <aside class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a class="active" onclick="showDashboardSection('overview')">📊 Overview</a></li>
+                            <li><a onclick="showDashboardSection('firs')">📋 FIR Management</a></li>
+                            <li><a onclick="showDashboardSection('complaints')">💬 Complaints</a></li>
+                            <li><a onclick="showDashboardSection('certificates')">📄 Certificates</a></li>
+                            <li><a onclick="showDashboardSection('officers')">👮 Officers</a></li>
+                            <li><a onclick="showDashboardSection('tips')">💡 Anonymous Tips</a></li>
+                            <li><a onclick="showDashboardSection('analytics')">📈 Analytics</a></li>
+                        </ul>
+                    </aside>
+                    
+                    <div class="dashboard-content">
+                        <!-- Overview Section -->
+                        <div id="overview" class="dashboard-section active">
+                            <h3 style="margin-bottom: 25px; color: #2c3e50;">Dashboard Overview</h3>
+                            
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-number">156</div>
+                                    <div class="stat-label">Total FIRs</div>
+                                </div>
+                                <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <div class="stat-number">89</div>
+                                    <div class="stat-label">Active Complaints</div>
+                                </div>
+                                <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    <div class="stat-number">42</div>
+                                    <div class="stat-label">Pending Certificates</div>
+                                </div>
+                                <div class="stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                    <div class="stat-number">28</div>
+                                    <div class="stat-label">Anonymous Tips</div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 30px;">
+                                <h4 style="margin-bottom: 15px; color: #2c3e50;">Recent Activity</h4>
+                                <div style="background: #f8f9ff; padding: 20px; border-radius: 12px;">
+                                    <p style="margin-bottom: 10px;">📋 New FIR filed - REF#FIR2024001</p>
+                                    <p style="margin-bottom: 10px;">💬 Complaint resolved - REF#CMP2024045</p>
+                                    <p style="margin-bottom: 10px;">📄 Certificate approved - REF#CERT2024023</p>
+                                    <p>💡 New anonymous tip received</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FIR Management Section -->
+                        <div id="firs" class="dashboard-section">
+                            <h3 style="margin-bottom: 25px; color: #2c3e50;">FIR Management</h3>
+                            
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>FIR No.</th>
+                                            <th>Complainant</th>
+                                            <th>Crime Type</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>FIR2024001</td>
+                                            <td>Rajesh Kumar</td>
+                                            <td>Theft</td>
+                                            <td>2024-11-15</td>
+                                            <td><span class="status status-under-investigation">Under Investigation</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Update</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>FIR2024002</td>
+                                            <td>Priya Sharma</td>
+                                            <td>Cybercrime</td>
+                                            <td>2024-11-14</td>
+                                            <td><span class="status status-pending">Pending</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Update</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>FIR2024003</td>
+                                            <td>Amit Verma</td>
+                                            <td>Fraud</td>
+                                            <td>2024-11-13</td>
+                                            <td><span class="status status-closed">Closed</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Complaints Section -->
+                        <div id="complaints" class="dashboard-section">
+                            <h3 style="margin-bottom: 25px; color: #2c3e50;">Complaint Management</h3>
+                            
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Complaint No.</th>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CMP2024045</td>
+                                            <td>Sunita Gupta</td>
+                                            <td>Service Delay</td>
+                                            <td>2024-11-16</td>
+                                            <td><span class="status status-active">In Progress</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Update</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CMP2024044</td>
+                                            <td>Vikram Singh</td>
+                                            <td>Facility Issue</td>
+                                            <td>2024-11-15</td>
+                                            <td><span class="status status-closed">Resolved</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Certificates Section -->
+                        <div id="certificates-admin" class="dashboard-section">
+                            <h3 style="margin-bottom: 25px; color: #2c3e50;">Certificate Applications</h3>
+                            
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Cert No.</th>
+                                            <th>Applicant</th>
+                                            <th>Type</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CERT2024023</td>
+                                            <td>Rohit Mehta</td>
+                                            <td>Police Verification</td>
+                                            <td>2024-11-17</td>
+                                            <td><span class="status status-pending">Pending</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Approve</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CERT2024022</td>
+                                            <td>Neha Patel</td>
+                                            <td>Character Certificate</td>
+                                            <td>2024-11-16</td>
+                                            <td><span class="status status-active">Approved</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Officers Section -->
+                        <div id="officers" class="dashboard-section">
+                            <h3 style="margin-bottom: 25px; color: #2c3e50;">Police Officers Management</h3>
+                            
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Officer ID</th>
+                                            <th>Name</th>
+                                            <th>Rank</th>
+                                            <th>Station</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>OFF001</td>
+                                            <td>Inspector Ravi Kumar</td>
+                                            <td>Inspector</td>
+                                            <td>City Police Station</td>
+                                            <td><span class="status status-active">Active</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Edit</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>OFF002</td>
+                                            <td>Sub-Inspector Meera Singh</td>
+                                            <td>Sub-Inspector</td>
+                                            <td>Traffic Division</td>
+                                            <td><span class="status status-active">Active</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Edit</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>OFF003</td>
+                                            <td>Constable Arjun Yadav</td>
+                                            <td>Constable</td>
+                                            <td>Highway Patrol</td>
+                                            <td><span class="status status-active">Active</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Edit</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Anonymous Tips Section -->
+                        <div id="tips-admin" class="dashboard-section">
+                            <h3 style="margin-bottom: 25px; color: #2c3e50;">Anonymous Tips</h3>
+                            
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Tip ID</th>
+                                            <th>Category</th>
+                                            <th>Date Received</th>
+                                            <th>Priority</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>TIP2024015</td>
+                                            <td>Drug Activity</td>
+                                            <td>2024-11-18</td>
+                                            <td><span class="status" style="background: #f8d7da; color: #721c24;">High</span></td>
+                                            <td><span class="status status-under-investigation">Under Review</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Investigate</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>TIP2024014</td>
+                                            <td>Suspicious Activity</td>
+                                            <td>2024-11-17</td>
+                                            <td><span class="status" style="background: #fff3cd; color: #856404;">Medium</span></td>
+                                            <td><span class="status status-pending">Pending</span></td>
+                                            <td>
+                                                <button class="action-btn action-btn-view">View</button>
+                                                <button class="action-btn action-btn-update">Investigate</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Analytics Section -->
+                        <div id="analytics" class="dashboard-section">
+                            <h3 style="margin-bottom: 25px; color: #2c3e50;">Analytics & Reports</h3>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                                <div style="background: #f8f9ff; padding: 25px; border-radius: 12px;">
+                                    <h4 style="color: #2c3e50; margin-bottom: 15px;">Crime Trends</h4>
+                                    <p style="margin-bottom: 10px;"><strong>Theft:</strong> 45 cases (↑ 12%)</p>
+                                    <p style="margin-bottom: 10px;"><strong>Cybercrime:</strong> 32 cases (↑ 25%)</p>
+                                    <p style="margin-bottom: 10px;"><strong>Fraud:</strong> 28 cases (↓ 8%)</p>
+                                    <p><strong>Assault:</strong> 18 cases (↓ 5%)</p>
+                                </div>
+                                
+                                <div style="background: #f8f9ff; padding: 25px; border-radius: 12px;">
+                                    <h4 style="color: #2c3e50; margin-bottom: 15px;">Resolution Rate</h4>
+                                    <p style="margin-bottom: 10px;"><strong>FIRs Resolved:</strong> 78%</p>
+                                    <p style="margin-bottom: 10px;"><strong>Complaints Resolved:</strong> 85%</p>
+                                    <p style="margin-bottom: 10px;"><strong>Avg. Resolution Time:</strong> 12 days</p>
+                                    <p><strong>Pending Cases:</strong> 45</p>
+                                </div>
+                                
+                                <div style="background: #f8f9ff; padding: 25px; border-radius: 12px;">
+                                    <h4 style="color: #2c3e50; margin-bottom: 15px;">Crime Hotspots</h4>
+                                    <p style="margin-bottom: 10px;">📍 Sector 15 - High</p>
+                                    <p style="margin-bottom: 10px;">📍 Market Area - Medium</p>
+                                    <p style="margin-bottom: 10px;">📍 Railway Station - Medium</p>
+                                    <p>📍 Industrial Zone - Low</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 25px; color: #2c3e50;" id="modalTitle">Login</h2>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">
+                    Login
+                </button>
+            </form>
+            
+            <div class="register-link" onclick="showRegisterModal()">
+                Don't have an account? Register here
+            </div>
+            
+            <div id="loginAlert" class="alert"></div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeRegisterModal()">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 25px; color: #2c3e50;">Register</h2>
+            
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" class="form-control" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Mobile Number *</label>
+                    <input type="tel" class="form-control" name="mobile" pattern="[0-9]{10}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Username *</label>
+                    <input type="text" class="form-control" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">
+                    Register
+                </button>
+            </form>
+            
+            <div class="register-link" onclick="showLoginModal('citizen')">
+                Already have an account? Login here
+            </div>
+            
+            <div id="registerAlert" class="alert"></div>
+        </div>
+    </div>
+
+    <!-- Emergency Button -->
+    <button class="emergency-button" onclick="handleEmergency()" title="Emergency SOS">
+        🚨
+    </button>
+
+    <script>
+        let currentUser = null;
+        let userType = null;
+
+        // Show/Hide Pages
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Login Modal
+        function showLoginModal(type) {
+            userType = type;
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('modalTitle').textContent = type === 'admin' ? 'Admin Login' : 'Citizen Login';
+        }
+
+        function closeModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('loginForm').reset();
+            hideAlert('loginAlert');
+        }
+
+        function showRegisterModal() {
+            closeModal();
+            document.getElementById('registerModal').classList.add('active');
+        }
+
+        function closeRegisterModal() {
+            document.getElementById('registerModal').classList.remove('active');
+            document.getElementById('registerForm').reset();
+            hideAlert('registerAlert');
+        }
+
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const username = formData.get('username');
+            const password = formData.get('password');
+
+            // Demo credentials
+            if (userType === 'admin' && username === 'admin' && password === 'admin123') {
+                currentUser = { name: 'Admin', type: 'admin' };
+                showAlert('loginAlert', 'Login successful!', 'success');
+                setTimeout(() => {
+                    closeModal();
+                    updateAuthUI();
+                    showPage('admin-dashboard');
+                }, 1000);
+            } else if (userType === 'citizen' && username === 'citizen' && password === 'citizen123') {
+                currentUser = { name: 'John Doe', type: 'citizen' };
+                showAlert('loginAlert', 'Login successful!', 'success');
+                setTimeout(() => {
+                    closeModal();
+                    updateAuthUI();
+                    showPage('home');
+                }, 1000);
+            } else {
+                showAlert('loginAlert', 'Invalid credentials. Try admin/admin123 or citizen/citizen123', 'error');
+            }
+        }
+
+        // Handle Register
+        function handleRegister(event) {
+            event.preventDefault();
+            showAlert('registerAlert', 'Registration successful! You can now login.', 'success');
+            setTimeout(() => {
+                closeRegisterModal();
+                showLoginModal('citizen');
+            }, 1500);
+        }
+
+        // Update Auth UI
+        function updateAuthUI() {
+            if (currentUser) {
+                document.getElementById('userInfo').textContent = `👤 ${currentUser.name}`;
+                document.getElementById('userInfo').classList.add('show');
+                document.getElementById('citizenLogin').style.display = 'none';
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('logoutBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('userInfo').classList.remove('show');
+                document.getElementById('citizenLogin').style.display = 'inline-block';
+                document.getElementById('adminLogin').style.display = 'inline-block';
+                document.getElementById('logoutBtn').style.display = 'none';
+            }
+        }
+
+        // Logout
+        function logout() {
+            currentUser = null;
+            userType = null;
+            updateAuthUI();
+            showPage('home');
+            showAlert('homeAlert', 'Logged out successfully!', 'info');
+        }
+
+        // Dashboard Sections
+        function showDashboardSection(sectionId) {
+            document.querySelectorAll('.dashboard-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Handle special case for certificates
+            if (sectionId === 'certificates') {
+                document.getElementById('certificates-admin').classList.add('active');
+            } else if (sectionId === 'tips') {
+                document.getElementById('tips-admin').classList.add('active');
+            } else {
+                document.getElementById(sectionId).classList.add('active');
+            }
+
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Submit FIR
+        function submitFIR(event) {
+            event.preventDefault();
+            document.getElementById('firLoading').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('firLoading').style.display = 'none';
+                const refNo = 'FIR' + Date.now().toString().slice(-6);
+                showAlert('firAlert', `FIR filed successfully! Your reference number is: ${refNo}`, 'success');
+                event.target.reset();
+            }, 2000);
+        }
+
+        // Submit Complaint
+        function submitComplaint(event) {
+            event.preventDefault();
+            const refNo = 'CMP' + Date.now().toString().slice(-6);
+            showAlert('complaintAlert', `Complaint lodged successfully! Your reference number is: ${refNo}`, 'success');
+            event.target.reset();
+        }
+
+        // Apply Certificate
+        function applyCertificate(event) {
+            event.preventDefault();
+            const refNo = 'CERT' + Date.now().toString().slice(-6);
+            showAlert('certificateAlert', `Application submitted successfully! Your reference number is: ${refNo}`, 'success');
+            event.target.reset();
+        }
+
+        // Submit Lost & Found
+        function submitLostFound(event) {
+            event.preventDefault();
+            const refNo = 'LF' + Date.now().toString().slice(-6);
+            showAlert('lostFoundAlert', `Report submitted successfully! Your reference number is: ${refNo}`, 'success');
+            event.target.reset();
+        }
+
+        // Submit Anonymous Tip
+        function submitTip(event) {
+            event.preventDefault();
+            showAlert('tipsAlert', 'Your anonymous tip has been submitted successfully. Thank you for helping maintain community safety.', 'success');
+            event.target.reset();
+        }
+
+        // Search Challan
+        function searchChallan(event) {
+            event.preventDefault();
+            
+            // Demo data
+            document.getElementById('challanNo').textContent = 'CH2024' + Math.floor(Math.random() * 1000);
+            document.getElementById('vehicleNo').textContent = 'DL-01-AB-1234';
+            document.getElementById('violation').textContent = 'Over Speeding';
+            document.getElementById('amount').textContent = '₹2,000';
+            document.getElementById('challanDate').textContent = '2024-11-15';
+            
+            document.getElementById('challanResult').style.display = 'block';
+            showAlert('challanAlert', 'Challan found!', 'success');
+        }
+
+        // Pay Challan
+        function payChallan() {
+            showAlert('challanAlert', 'Redirecting to payment gateway...', 'info');
+            setTimeout(() => {
+                showAlert('challanAlert', 'Payment successful! Receipt will be sent to your registered email.', 'success');
+                document.getElementById('challanResult').style.display = 'none';
+                document.getElementById('challanSearchForm').reset();
+            }, 2000);
+        }
+
+        // Track Status
+        function trackStatus(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const trackType = formData.get('trackType');
+            const refNo = formData.get('referenceNumber');
+            
+            // Demo data
+            document.getElementById('trackRefNo').textContent = refNo;
+            document.getElementById('trackType').textContent = trackType.toUpperCase();
+            document.getElementById('trackStatus').innerHTML = '<span class="status status-under-investigation">Under Investigation</span>';
+            document.getElementById('trackDate').textContent = '2024-11-15';
+            document.getElementById('trackUpdated').textContent = '2024-11-18';
+            document.getElementById('trackRemarks').textContent = 'Your case is being reviewed by the concerned officer. You will be contacted soon.';
+            
+            document.getElementById('trackResult').style.display = 'block';
+            showAlert('trackAlert', 'Status found!', 'success');
+        }
+
+        // Emergency Handler
+        function handleEmergency() {
+            if (confirm('🚨 EMERGENCY ALERT\n\nThis will send an immediate SOS alert to the nearest police station with your location.\n\nProceed?')) {
+                showAlert('homeAlert', '🚨 Emergency SOS sent! Police have been alerted with your location. Help is on the way!', 'error');
+                showPage('home');
+                
+                // Simulate emergency notification
+                setTimeout(() => {
+                    alert('Emergency Response Team notified!\nExpected arrival: 5-10 minutes\nStay safe!');
+                }, 1000);
+            }
+        }
+
+        // Alert Functions
+        function showAlert(elementId, message, type) {
+            const alert = document.getElementById(elementId);
+            alert.textContent = message;
+            alert.className = `alert alert-${type} show`;
+            
+            setTimeout(() => {
+                hideAlert(elementId);
+            }, 5000);
+        }
+
+        function hideAlert(elementId) {
+            const alert = document.getElementById(elementId);
+            alert.classList.remove('show');
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // Initialize
+        updateAuthUI();
+    </script>
+</body>
+</html>-control" name="contact" pattern="[0-9]{10}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Complaint Type *</label>
+                            <select class="form-control" name="type" required>
+                                <option value="">Select Complaint Type</option>
+                                <option value="misconduct">Police Misconduct</option>
+                                <option value="delay">Service Delay</option>
+                                <option value="corruption">Corruption</option>
+                                <option value="facility">Facility Issue</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Complaint Details *</label>
+                            <textarea class="form-control" name="details" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; padding: 14px;">
+                            Submit Complaint
+                        </button>
+                    </form>
+                    
+                    <div id="complaintAlert" class="alert"></div>
+                </div>
+            </div>
+
+            <!-- Certificates Page -->
+            <div id="certificates" class="page">
+                <h2 class="page-title">📄 Apply for Certificates</h2>
+                
+                <div class="form-container">
+                    <form id="certificateForm" onsubmit="applyCertificate(event)">
+                        <div class="form-group">
+                            <label>Certificate Type *</label>
+                            <select class="form-control" name="certType" required>
+                                <option value="">Select Certificate Type</option>
+                                <option value="police_verification">Police Verification</option>
+                                <option value="character_certificate">Character Certificate</option>
+                                <option value="noc">No Objection Certificate (NOC)</option>
+                                <option value="tenant_verification">Tenant Verification</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Applicant Name *</label>
+                            <input type="text" class="form-control" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Contact Number *</label>
+                            <input type="tel" class="form
