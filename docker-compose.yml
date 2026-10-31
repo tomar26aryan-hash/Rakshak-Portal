@@ -1,0 +1,48 @@
+# One-command deployment:  cp .env.example .env  (fill it in)  &&  docker compose up -d --build
+services:
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-rakshak_portal}
+      MYSQL_USER: ${DB_USER:-rakshak}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?Set DB_ROOT_PASSWORD in .env}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-rakshak_portal}
+      DB_USER: ${DB_USER:-rakshak}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env (32+ random characters)}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-8h}
+      # No reverse proxy in front by default. Set TRUST_PROXY=1 in .env if you add Nginx/Caddy.
+      TRUST_PROXY: ${TRUST_PROXY:-false}
+      FORCE_HTTPS: ${FORCE_HTTPS:-false}
+      CORS_ORIGIN: ${CORS_ORIGIN:-}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      ADMIN_FULL_NAME: ${ADMIN_FULL_NAME:-Portal Administrator}
+      ADMIN_MOBILE: ${ADMIN_MOBILE:-}
+    ports:
+      - "${PORT:-5000}:5000"
+
+volumes:
+  db_data:

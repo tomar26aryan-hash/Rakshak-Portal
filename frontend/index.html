@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rakshak Portal - file FIRs, lodge complaints and track their status online.">
+    <meta name="theme-color" content="#2a5298">
+    <title>Rakshak Portal - Digital Police & Citizen Service Platform</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🛡️</span>
+                    <span>Rakshak Portal</span>
+                </div>
+
+                <nav aria-label="Main">
+                    <ul class="nav-menu">
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="services">Services</a></li>
+                        <li><a href="#" data-page="fir">File FIR</a></li>
+                        <li><a href="#" data-page="complaint">Complaints</a></li>
+                        <li><a href="#" data-page="track">Track Status</a></li>
+                        <li id="navMyRecords" hidden><a href="#" data-page="myRecords">My Records</a></li>
+                        <li id="navDashboard" hidden><a href="#" data-page="adminDashboard">Dashboard</a></li>
+                    </ul>
+                </nav>
+
+                <div class="auth-buttons" id="authButtons">
+                    <a href="#" class="btn btn-secondary" data-action="open-login">Login</a>
+                    <a href="#" class="btn btn-primary" data-action="open-register">Register</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main">
+        <div class="container">
+
+            <!-- Home Page -->
+            <div id="home" class="page active">
+                <div class="hero">
+                    <h1>Rakshak Portal</h1>
+                    <p class="hero-subtitle">Digital Police & Citizen Service Platform</p>
+                    <p style="font-size: 1.1em; color: #666; margin-bottom: 30px;">Ensuring Safety, Justice & Transparency</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary" data-page="fir">File FIR Online</a>
+                        <a href="#" class="btn btn-secondary" data-page="services">Explore Services</a>
+                    </div>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">📋</div>
+                        <h3 class="service-title">Online FIR</h3>
+                        <p>File and track your FIR online with real-time status updates and digital documentation.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💬</div>
+                        <h3 class="service-title">Complaints</h3>
+                        <p>Submit complaints and grievances with transparent tracking and resolution status.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚨</div>
+                        <h3 class="service-title">Emergency Services</h3>
+                        <p>Quick access to emergency reporting and SOS alerts for immediate assistance.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📄</div>
+                        <h3 class="service-title">Certificates <span class="badge-soon">Coming soon</span></h3>
+                        <p>Apply for police verification, character certificates, and NOCs online.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔍</div>
+                        <h3 class="service-title">Lost &amp; Found <span class="badge-soon">Coming soon</span></h3>
+                        <p>Report lost items and search for found property in our comprehensive database.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💡</div>
+                        <h3 class="service-title">Anonymous Tips <span class="badge-soon">Coming soon</span></h3>
+                        <p>Share anonymous tips and information to help maintain community safety.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Page -->
+            <div id="services" class="page">
+                <h2 style="text-align: center; margin-bottom: 40px; color: #2c3e50;">Our Services</h2>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4>👥 Citizen Services</h4>
+                        <ul style="margin-top: 15px; color: #666;">
+                            <li>FIR Filing &amp; Tracking</li>
+                            <li>Complaint Management</li>
+                            <li>Certificate Requests <span class="badge-soon">Coming soon</span></li>
+                            <li>Traffic Challan Payment <span class="badge-soon">Coming soon</span></li>
+                            <li>Lost Property Reports <span class="badge-soon">Coming soon</span></li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>🚨 Emergency Services</h4>
+                        <ul style="margin-top: 15px; color: #666;">
+                            <li>SOS Emergency Alerts (red button, bottom-right)</li>
+                            <li>Cybercrime Reporting (via FIR)</li>
+                            <li>Harassment Complaints (via FIR)</li>
+                            <li>Violence Reporting (via FIR)</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>📋 Administrative <span class="badge-soon">Coming soon</span></h4>
+                        <ul style="margin-top: 15px; color: #666;">
+                            <li>Police Verification</li>
+                            <li>Character Certificates</li>
+                            <li>No Objection Certificates</li>
+                            <li>Tenant Verification</li>
+                            <li>Event Permissions</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h4>📞 Emergency Contacts (India)</h4>
+                        <ul class="helpline-list">
+                            <li><span>All emergencies</span> <strong>112</strong></li>
+                            <li><span>Police</span> <strong>100</strong></li>
+                            <li><span>Fire</span> <strong>101</strong></li>
+                            <li><span>Ambulance</span> <strong>102</strong></li>
+                            <li><span>Women helpline</span> <strong>1091</strong></li>
+                            <li><span>Child helpline</span> <strong>1098</strong></li>
+                            <li><span>Cyber crime</span> <strong>1930</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIR Filing Page -->
+            <div id="fir" class="page">
+                <h2 style="text-align: center; margin-bottom: 40px; color: #2c3e50;">File FIR Online</h2>
+
+                <div class="form-container">
+                    <form id="firForm" data-form="fir">
+                        <div class="form-group">
+                            <label for="firName">Complainant Name *</label>
+                            <input id="firName" type="text" class="form-control" name="name" required minlength="2" maxlength="100" autocomplete="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firMobile">Mobile Number *</label>
+                            <input id="firMobile" type="tel" class="form-control" name="mobile" required pattern="\+?[0-9 \-]{10,16}" maxlength="20" autocomplete="tel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firEmail">Email Address</label>
+                            <input id="firEmail" type="email" class="form-control" name="email" maxlength="254" autocomplete="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firAddress">Address *</label>
+                            <textarea id="firAddress" class="form-control" name="address" required minlength="5" maxlength="500" autocomplete="street-address"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firCrimeType">Type of Crime *</label>
+                            <select id="firCrimeType" class="form-control" name="crimeType" required>
+                                <option value="">Select Crime Type</option>
+                                <option value="theft">Theft</option>
+                                <option value="fraud">Fraud</option>
+                                <option value="cybercrime">Cybercrime</option>
+                                <option value="assault">Assault</option>
+                                <option value="harassment">Harassment</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firDetails">Incident Details *</label>
+                            <textarea id="firDetails" class="form-control" name="details" placeholder="Please provide detailed information about the incident..." required minlength="10" maxlength="5000"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firDate">Date of Incident *</label>
+                            <input id="firDate" type="date" class="form-control" name="incidentDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firLocation">Location of Incident *</label>
+                            <input id="firLocation" type="text" class="form-control" name="location" required maxlength="255">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                            Submit FIR
+                        </button>
+                    </form>
+
+                    <div id="firAlert" class="alert" role="alert"></div>
+                </div>
+            </div>
+
+            <!-- Complaint Page -->
+            <div id="complaint" class="page">
+                <h2 style="text-align: center; margin-bottom: 40px; color: #2c3e50;">Lodge Complaint</h2>
+
+                <div class="form-container">
+                    <form id="complaintForm" data-form="complaint">
+                        <div class="form-group">
+                            <label for="cmpName">Your Name *</label>
+                            <input id="cmpName" type="text" class="form-control" name="name" required minlength="2" maxlength="100" autocomplete="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cmpContact">Contact Number *</label>
+                            <input id="cmpContact" type="tel" class="form-control" name="contact" required pattern="\+?[0-9 \-]{10,16}" maxlength="20" autocomplete="tel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cmpType">Complaint Type *</label>
+                            <select id="cmpType" class="form-control" name="type" required>
+                                <option value="">Select Complaint Type</option>
+                                <option value="police-misconduct">Police Misconduct</option>
+                                <option value="service-delay">Service Delay</option>
+                                <option value="corruption">Corruption</option>
+                                <option value="facility-issue">Facility Issue</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cmpDetails">Complaint Details *</label>
+                            <textarea id="cmpDetails" class="form-control" name="details" required minlength="10" maxlength="5000"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                            Submit Complaint
+                        </button>
+                    </form>
+
+                    <div id="complaintAlert" class="alert" role="alert"></div>
+                </div>
+            </div>
+
+            <!-- Track Status Page -->
+            <div id="track" class="page">
+                <h2 style="text-align: center; margin-bottom: 40px; color: #2c3e50;">Track Status</h2>
+
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="trackingNumber">Enter Reference Number</label>
+                        <input type="text" class="form-control" id="trackingNumber" placeholder="e.g. FIR1001 or CMP2001" maxlength="20" autocomplete="off">
+                    </div>
+
+                    <button type="button" data-action="track" class="btn btn-primary" style="width: 100%;">
+                        Track Status
+                    </button>
+
+                    <div id="trackingResult" style="margin-top: 30px;" aria-live="polite"></div>
+                </div>
+            </div>
+
+            <!-- Citizen: My Records -->
+            <div id="myRecords" class="page">
+                <h2 style="text-align: center; margin-bottom: 40px; color: #2c3e50;">My Records</h2>
+                <div id="myRecordsBody" class="records-grid"></div>
+            </div>
+
+            <!-- Staff Dashboard -->
+            <div id="adminDashboard" class="page">
+                <h2 style="margin-bottom: 30px; color: #2c3e50;">Staff Dashboard</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="statTotalFirs">–</div>
+                        <div class="stat-label">Total FIRs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="statActiveFirs">–</div>
+                        <div class="stat-label">Active Cases</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="statPendingComplaints">–</div>
+                        <div class="stat-label">Pending Complaints</div>
+                    </div>
+                    <div class="stat-card" id="statEmergencyCard">
+                        <div class="stat-number" id="statEmergency">–</div>
+                        <div class="stat-label">Active Emergency Alerts</div>
+                    </div>
+                </div>
+
+                <div class="dashboard">
+                    <div class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li><a href="#" class="active" data-section="overview">Overview</a></li>
+                            <li><a href="#" data-section="firs">FIR Management</a></li>
+                            <li><a href="#" data-section="complaints">Complaints</a></li>
+                            <li><a href="#" data-section="emergency">Emergency Alerts</a></li>
+                            <li><a href="#" data-section="officers">Officers</a></li>
+                            <li><a href="#" data-section="analytics">Analytics</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-content" id="dashboardContent" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <strong>In an emergency, call 112.</strong>
+        Online forms and SOS alerts are reviewed by portal staff and are not a substitute for emergency services.
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+        <div class="modal-content">
+            <button type="button" class="modal-close" data-action="close-modal" aria-label="Close">&times;</button>
+            <h3 id="loginTitle" style="text-align: center; margin-bottom: 30px;">Login</h3>
+
+            <form id="loginForm" data-form="login">
+                <div class="form-group">
+                    <label for="loginUsername">Username or Email</label>
+                    <input id="loginUsername" type="text" class="form-control" name="username" required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input id="loginPassword" type="password" class="form-control" name="password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Login
+                </button>
+            </form>
+
+            <div id="loginAlert" class="alert" role="alert"></div>
+            <p class="form-switch">New here? <a href="#" data-action="open-register">Create a citizen account</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+        <div class="modal-content">
+            <button type="button" class="modal-close" data-action="close-modal" aria-label="Close">&times;</button>
+            <h3 id="registerTitle" style="text-align: center; margin-bottom: 30px;">Create Citizen Account</h3>
+
+            <form id="registerForm" data-form="register">
+                <div class="form-group">
+                    <label for="regFullName">Full Name *</label>
+                    <input id="regFullName" type="text" class="form-control" name="fullName" required minlength="2" maxlength="100" autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="regUsername">Username *</label>
+                    <input id="regUsername" type="text" class="form-control" name="username" required pattern="[A-Za-z0-9_.\-]{3,30}" autocomplete="username">
+                    <span class="form-hint">3-30 characters: letters, numbers, . - _</span>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email *</label>
+                    <input id="regEmail" type="email" class="form-control" name="email" required maxlength="254" autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="regMobile">Mobile Number *</label>
+                    <input id="regMobile" type="tel" class="form-control" name="mobile" required pattern="\+?[0-9 \-]{10,16}" maxlength="20" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password *</label>
+                    <input id="regPassword" type="password" class="form-control" name="password" required minlength="8" maxlength="72" autocomplete="new-password">
+                    <span class="form-hint">At least 8 characters, with letters and numbers</span>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword2">Confirm Password *</label>
+                    <input id="regPassword2" type="password" class="form-control" name="password2" required minlength="8" maxlength="72" autocomplete="new-password">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Create Account
+                </button>
+            </form>
+
+            <div id="registerAlert" class="alert" role="alert"></div>
+            <p class="form-switch">Already registered? <a href="#" data-action="open-login">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Record Detail Modal (FIR / complaint) -->
+    <div id="detailModal" class="modal" role="dialog" aria-modal="true" aria-label="Record details">
+        <div class="modal-content wide">
+            <button type="button" class="modal-close" data-action="close-modal" aria-label="Close">&times;</button>
+            <div id="detailBody"></div>
+        </div>
+    </div>
+
+    <!-- Emergency Button -->
+    <button type="button" class="emergency-button" data-action="sos" title="Emergency SOS" aria-label="Emergency SOS">
+        🚨
+    </button>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
